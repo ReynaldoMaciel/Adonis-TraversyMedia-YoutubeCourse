@@ -1,0 +1,18 @@
+@layout('main')
+
+@section('content')
+    <a href="{{ route('PostController.index')}}"> ← Go back</a>
+    <br><br>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+    <div class="row">
+        <div class="col-md-2">
+            <a class="btn btn-dark d-block float-left" href="{{ route('PostController.edit',{ id : post.id }) }}">Edit</a>
+            
+            <form action="{{ '/posts/' + post.id + '?_method=DELETE' }}" method="POST">
+                {{ csrfField() }}
+                <button class="btn btn-danger d-block float-right" class="btn btn-danger" type="submit">Delete</button>                
+            </form>
+        </div>
+    </div>
+@endsection

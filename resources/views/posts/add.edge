@@ -1,0 +1,26 @@
+@layout('main')
+
+@section('content')
+
+<a href="{{ route('PostController.index')}}"> ← Go back</a>
+<br><br>
+
+<form action="/posts/store" method="POST">
+
+    {{ csrfField() }}
+    <div class="form-group">
+        <h4>Title</h4>
+        <input type="text" name="title" class="form-control" placeholder="Title" value="{{ old('title', '') }}"/>
+        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('title'), hasErrorFor('title')) }}
+        <br><br>
+        <h4>Body</h4>
+        <textarea type="text" name="body" class="form-control" placeholder="Body" value="{{ old('body', '') }}">
+        </textarea>
+        {{ elIf('<span class="text-danger">$self</span>', getErrorFor('body'), hasErrorFor('body')) }}
+        <br><br>
+        <button class="btn btn-primary" type="submit">Send</button>
+    </div>
+
+</form>
+
+@endsection
